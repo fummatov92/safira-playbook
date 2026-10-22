@@ -1,9 +1,8 @@
-# 🏛️ Safira.uz — Arxitektura Qarorlari va Jamoaviy Ishlash Qo'llanmasi (Team Playbook)
+# 🏛️ Safira.uz — Arxitektura Qarorlari va Texnik Standartlar Qo'llanmasi (Playbook)
 
 > **Loyiha:** Safira.uz (O'zbekiston hududiy xizmatlar agregatori SaaS platformasi)  
-> **Loyiha Rahbari (Senior Team Lead):** Fayzillo Ummatov  
 > **Kutilayotgan Start:** 2027-yil Yanvar  
-> **Jamoa Hamkorlari:** Nurmuhammad va Backend Muhandislari
+> **Hujjat Maqsadi:** Arxitektura qarorlari, vositalar ekotizimi va texnik standartlar qo'llanmasi
 
 ---
 
@@ -12,11 +11,11 @@
 2. [Repozitoriylar va Vositalar Ekologiyasi](#-2-repozitoriylar-va-vositalar-ekologiyasi)
 3. [To'rt Mikroxizmatli Arxitektura (Portlar Taqsimoti)](#-3-tort-mikroxizmatli-arxitektura-portlar-taqsimoti)
 4. [File Upload Service — Gibrid Media Saqlash](#-4-file-upload-service--gibrid-media-saqlash-zero-cost-storage)
-5. [AI-Tools (AGY-Tool) — Jamoaviy Vositalar Majmuasi](#-5-ai-tools-agy-tool--jamoaviy-vositalar-majmuasi)
+5. [AI-Tools (AGY-Tool) — Vositalar Majmuasi](#-5-ai-tools-agy-tool--vositalar-majmuasi)
 6. [Avtorizatsiya va Guard Standartlari](#-6-avtorizatsiya-va-guard-standartlari)
 7. [Ma'lumotlar Bazasi va Prisma Chegaralari](#-7-malumotlar-bazasi-va-prisma-chegaralari)
 8. [3-Bosqichli Ish Quvuri (Lab ➔ Dev ➔ Prod)](#-8-3-bosqichli-ish-quvuri-lab--dev--prod)
-9. [Dasturchilar Uchun 1-Kungi Onboarding Qadamlari](#-9-dasturchilar-uchun-1-kungi-onboarding-qadamlari)
+9. [Loyihada Ish Boshlash Qadamlari](#-9-loyihada-ish-boshlash-qadamlari)
 
 ---
 
@@ -27,8 +26,8 @@ Safira.uz — respublika bo'yicha 14 ta hudud (viloyat va shaharlar)dagi barcha 
 ### Nega kod bazasida funksiyalar "bo'sh" (Stub / Blueprint)?
 Asosiy repozitoriy (`Safira-service-backend`) **ataylab qat'iy arxitektura skeleti** shaklida qurilgan:
 - **Kontraktlar barqarorligi:** Frontend va mobil ilovalar uchun barcha API endpointlar, yo'llar (`Controllers`), ma'lumotlar modellari (`DTO`) va baza sxemasi (`Prisma`) oldindan to'liq loyihalashtirilgan.
-- **Tartibsizlikdan himoya:** AI yordamchilar va junior dasturchilar o'zboshimchalik bilan arxitekturani o'zgartirmasligi uchun aniq kirish-chiqish qoliplari berilgan.
-- **Jamoaning vazifasi:** Ishlab chiquvchilar arxitektura skeletiga teginmasdan, faqatgina `Service` qatlamidagi biznes-mantiqni (DB so'rovlari, validatsiyalar va xatoliklar qaytarish) to'ldiradilar.
+- **Tartibsizlikdan himoya:** Arxitekturani o'zboshimchalik bilan o'zgartirmaslik va xatoliklarni oldini olish uchun aniq kirish-chiqish qoliplari berilgan.
+- **Jamoaning vazifasi:** Dasturchilar arxitektura skeletiga teginmasdan, faqatgina `Service` qatlamidagi biznes-mantiqni (DB so'rovlari, validatsiyalar va xatoliklar qaytarish) to'ldiradilar.
 
 ---
 
@@ -41,7 +40,7 @@ Loyihaning barcha qismlari modulli tarzda ajratilgan:
 | 🏗️ **Core Backend (Write API)** | [`Safira-service-backend`](https://github.com/fayzillo95/Safira-service-backend) | Asosiy biznes mantiq, Prisma ORM, Auth va modullar |
 | 📁 **File Upload Service** | [`file_upload_service`](https://github.com/fayzillofn30-ai/file_upload_service.git) | Gibrid media kesh, Telegram CDN va Google Drive zaxirasi |
 | 🛠️ **AI-Tools (AGY-Tool)** | [`ai-tools`](https://github.com/fummatov92/ai-tools.git) | 0-tokenli deterministik tahlil va kod tekshiruv vositalari |
-| 📘 **Architecture Playbook** | [`safira-playbook`](https://github.com/fummatov92/safira-playbook.git) | Jamoaviy qo'llanma va arxitektura qarorlari |
+| 📘 **Architecture Playbook** | [`safira-playbook`](https://github.com/fummatov92/safira-playbook.git) | Umumiy texnik qo'llanma va arxitektura qarorlari |
 
 ---
 
@@ -84,12 +83,12 @@ flowchart LR
 
 ---
 
-## 🛠️ 5. AI-Tools (AGY-Tool) — Jamoaviy Vositalar Majmuasi
+## 🛠️ 5. AI-Tools (AGY-Tool) — Vositalar Majmuasi
 
 - **Repozitoriy:** [`https://github.com/fummatov92/ai-tools.git`](https://github.com/fummatov92/ai-tools.git)
 - **Falsafasi:** Kod tahlili, struktura ko'rish, xavfsizlik skaneri va xatolarni aniqlashda tashqi API'larga murojaat qilmasdan, 0-token sarfi bilan lokal deterministik tezlikda ishlash.
 
-### 💻 Jamoa A'zolari Uchun 5 Ta Kundalik Buyruq:
+### 💻 5 Ta Asosiy Kundalik Buyruq:
 
 ```bash
 # 1. Kod strukturasini ochmasdan, AST daraxti orqali ko'rish:
@@ -132,7 +131,7 @@ Backendda barcha yo'llarni birdaniga qulflab qo'yish yoki noto'g'ri guard qo'lla
 
 ## 🗄️ 7. Ma'lumotlar Bazasi va Prisma Chegaralari
 
-- 🚫 **`prisma/schema.prisma` ga teginish taqiqlanadi:** Sxemani o'zboshimchalik bilan o'zgartirish yoki migratsiya yurgizish taqiqlanadi. Har qanday yangi maydon Team Lead bilan kelishiladi.
+- 🚫 **`prisma/schema.prisma` ga teginish taqiqlanadi:** Sxemani o'zboshimchalik bilan o'zgartirish yoki migratsiya yurgizish taqiqlanadi. Har qanday yangi maydon umumiy arxitektura kelishuvi asosida kiritiladi.
 - 📍 **Viloyatlar:** O'zbekistonning 14 ta hududi (viloyatlar, Qoraqalpog'iston Respublikasi va Toshkent shahri) allaqachon ma'lumotlar bazasiga to'liq seed qilingan.
 - 🔑 **UUID standarti:** Barcha ID kalitlar `String` (UUID v4) shaklida. Controllerlarda `+id` deb raqamga o'girish xato hisoblanadi.
 
@@ -143,22 +142,22 @@ Backendda barcha yo'llarni birdaniga qulflab qo'yish yoki noto'g'ri guard qo'lla
 Loyiha barqarorligini ta'minlash uchun qat'iy 3 bosqichli sikl amal qiladi:
 
 ```
-[1. Lab: AI Sandbox] 
-       ⬇️ (Tekshirilgan kod)
-[2. Dev: Nurmuhammad & Jamoa PR] 
-       ⬇️ (Team Lead audit & Code Review)
+[1. Lab: Izolyatsiyalangan Testbed] 
+       ⬇️ (Avtomatlashtirilgan testlar)
+[2. Dev: Branch & PR (Pull Request)] 
+       ⬇️ (Code Review & Audit)
 [3. Production: Safira.uz Jonli Server]
 ```
 
-- **Lab (Tajriba hududi):** Yangi eksperimental xususiyatlar laboratoriya botida (`@verry_menegment_todo_bot`) sinovdan o'tkaziladi.
-- **Dev (Ishlab chiquvchilar hududi):** Jamoa a'zolari o'z modulini Git branch'ida yozib, `ai-tools` orqali tekshirib, PR (Pull Request) ochadi.
-- **Prod (Jonli tizim):** Faqat Team Lead (Fayzillo) tomonidan review qilinib, muvaffaqiyatli testlardan so'ng asosiy repozitoriyga birlashtiriladi.
+- **Lab (Tajriba hududi):** Yangi eksperimental xususiyatlar laboratoriya botida (`@verry_menegment_todo_bot`) va test muhitida sinovdan o'tkaziladi.
+- **Dev (Ishlab chiqish hududi):** Dasturchilar o'z modulini alohida Git shoxida (branch) ishlab chiqadi, `ai-tools` orqali tekshiradi va PR (Pull Request) ochadi.
+- **Prod (Jonli tizim):** PR to'liq Code Review va testlardan o'tgandan so'ng asosiy repozitoriyga birlashtiriladi (merge).
 
 ---
 
-## 🚀 9. Dasturchilar Uchun 1-Kungi Onboarding Qadamlari
+## 🚀 9. Loyihada Ish Boshlash Qadamlari
 
-Jamoaga yangi qo'shilgan muhandis (Nurmuhammad yoki boshqa a'zo) quyidagi qadamlarni bajaradi:
+Loyihada ish boshlash uchun quyidagi qadamlar bajariladi:
 
 1. **Repozitoriylarni klonlash:**
    ```bash
@@ -178,4 +177,4 @@ Jamoaga yangi qo'shilgan muhandis (Nurmuhammad yoki boshqa a'zo) quyidagi qadaml
    npm install
    agy-tool debug check src/
    ```
-4. **Vazifani boshlash:** Team Lead tomonidan ajratilgan modul (masalan: `RegionService`) ichidagi bo'sh metodlarni Prisma so'rovlari bilan to'ldirish va PR ochish.
+4. **Vazifani boshlash:** Reja bo'yicha belgilangan modul (masalan: `RegionService`) ichidagi bo'sh metodlarni Prisma so'rovlari bilan to'ldirish va PR ochish.
