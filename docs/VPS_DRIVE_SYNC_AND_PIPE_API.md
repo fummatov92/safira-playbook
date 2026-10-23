@@ -143,7 +143,9 @@ flowchart LR
 
 - **Xizmat Porti:** `15815` (Contabo VPS dagi xavfsiz 15800–15900 oralig'ida)
 - **Asosiy URL:** `http://<CONTABO_SERVER_IP>:15815/api/v1/drive`
-- **Avtorizatsiya:** `Authorization: Bearer <SECURE_PIPE_SECRET>`
+- **Xavfsizlik 1-Bosqichi (IP Whitelist):** Faqat ruxsat etilgan VPS IP-manzillaridan kelgan so'rovlar qabul qilinadi. Boshqa har qanday IP-manzildan kelgan so'rov darhol `403 Forbidden` bilan bloklanadi.
+- **Ruxsat Berilgan IP-manzillar Fayli:** `/home/fayzillo/Desktop/agy_tasks/drive_pipe_gateway/config/allowed_ips.json`
+- **Xavfsizlik 2-Bosqichi (Bearer Token):** `Authorization: Bearer <SECURE_PIPE_SECRET>`
 
 ### 1️⃣ `POST /api/v1/drive/pipe-upload`
 Fayl yoki ma'lumotlar oqimini to'g'ridan-to'g'ri Google Drive ga yuklaydi.
