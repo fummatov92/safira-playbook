@@ -66,7 +66,10 @@ Sinxronizatsiyada maxfiy ma'lumotlar sizib chiqmasligi (Zero Secret Leak) va tiz
 **/*.pyc
 **/*.pyo
 
-# 3. Maxfiy Ma'lumotlar va Kalitlar (Zero-Leak)
+# 3. Git Metadata (.git ichki bazasi)
+**/.git/**
+
+# 4. Maxfiy Ma'lumotlar va Kalitlar (Zero-Leak)
 **/.env
 **/.env.*
 **/*.pem
