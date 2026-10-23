@@ -100,23 +100,28 @@ temp/**
 
 ---
 
-## 📂 3. Maxsus Google Drive Papkasi Bilan Ulanish
+## 📂 3. Maxsus Google Drive Papkasi Bilan Ulanish (`Master vps`)
 
 Foydalanuvchi taqdim etgan Google Drive papkasi:
+- **Papka Nomi:** `Master vps`
 - **Papka IDsi:** `12qqIN6rSpTZGHt3vcpet5sg99w7pWcAV`
 - **To'liq havola:** `https://drive.google.com/drive/folders/12qqIN6rSpTZGHt3vcpet5sg99w7pWcAV`
 
-Ushbu papka bilan server o'rtasida to'liq Read va Write (yozish va o'qish) huquqlari sinovdan o'tkazildi va tasdiqlandi.
+Ushbu papka aynan **Master VPS** ma'lumotlari uchun maxsus ochilgan bo'lib, Worker VPS dagi ma'lumotlar bilan hech qanday to'qnashuv bo'lmaydi. Worker VPS o'z zaxirasini alohida `Worker vps` papkasiga saqlaydi, Master VPS esa to'g'ridan-to'g'ri ushbu `12qqIN6r...` papkasi ichiga o'zining `Desktop/` va `Downloads/` jildlarini joylashtiradi.
 
 ### Master VPS da to'g'ridan-to'g'ri bog'lash usuli:
 ```bash
-# 1. Papkani to'g'ridan-to'g'ri ko'rish:
-rclone lsf --drive-root-folder-id 12qqIN6rSpTZGHt3vcpet5sg99w7pWcAV gdrive:
-
-# 2. Master VPS dan ushbu papkaga to'g'ridan-to'g'ri sinxronlash:
-rclone sync /master/loyihalar gdrive: \
+# 1. Master VPS Desktop papkasini sinxronlash:
+rclone sync /home/fayzillo/Desktop gdrive:Desktop \
   --drive-root-folder-id 12qqIN6rSpTZGHt3vcpet5sg99w7pWcAV \
-  --exclude-from drive_sync_exclude.txt -v
+  --exclude-from drive_sync_exclude.txt \
+  --transfers 4 --checkers 8 -v
+
+# 2. Master VPS Downloads (Brains) papkasini sinxronlash:
+rclone sync /home/fayzillo/Downloads gdrive:Downloads \
+  --drive-root-folder-id 12qqIN6rSpTZGHt3vcpet5sg99w7pWcAV \
+  --exclude-from drive_sync_exclude.txt \
+  --transfers 4 --checkers 8 -v
 ```
 
 ---
